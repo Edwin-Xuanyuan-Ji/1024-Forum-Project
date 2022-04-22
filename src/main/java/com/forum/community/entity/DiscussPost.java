@@ -1,19 +1,41 @@
 package com.forum.community.entity;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.Date;
 
-
+@Document(indexName = "discusspost")
 public class DiscussPost {
+
+    @Id
     private int id;
+
+    @Field(type = FieldType.Integer, name = "userId")
     private int userId;
+
+    @Field(type = FieldType.Text, name = "title")
     private String title;
+
+    @Field(type = FieldType.Text, name = "content")
     private String content;
+
+    @Field(type = FieldType.Integer, name = "type")
     private int type;
+
+    @Field(type = FieldType.Integer, name = "status")
     private int status;
+
+    @Field(type = FieldType.Date, name = "createTime")
     private Date createTime;
+
+    @Field(type = FieldType.Integer, name = "commentCount")
     private int commentCount;
+
+    @Field(type = FieldType.Double, name = "score")
     private double score;
 
     public int getId() {

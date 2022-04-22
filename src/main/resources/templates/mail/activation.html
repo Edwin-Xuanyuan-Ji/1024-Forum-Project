@@ -2,18 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
-    <title>牛客网-激活账号</title>
+    <title>1024Forum-Activation</title>
 </head>
 <body>
 	<div>
 		<p>
-			<b th:text="${email}">xxx@xxx.com</b>, 您好!
+			<b th:text="${email}">xxx@xxx.com</b>,
 		</p>
 		<p>
-			您正在注册牛客网, 这是一封激活邮件, 请点击 
-			<a th:href="${url}">此链接</a>,
-			激活您的牛客账号!
+			Hello!
+		</p>
+		<p>
+			You are registering 1024 Forum. This is an activation Email. Please click
+			<a th:href="${url}">here</a>
+			to activate your 1024 forum account!
+		</p>
+		<p>
+			Regards,
+		</p>
+		<p>
+			1024 Forum.
 		</p>
 	</div>
 </body>

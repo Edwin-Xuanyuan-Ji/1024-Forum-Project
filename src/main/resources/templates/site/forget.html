@@ -1,18 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
+	<link rel="icon" href="https://1024forum-avatar.s3.amazonaws.com/noun-lego-714043.png"/>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
-	<link rel="stylesheet" href="../css/global.css" />
-	<link rel="stylesheet" href="../css/login.css" />
-	<title>牛客网-忘记密码</title>
+	<link rel="stylesheet" th:href="@{/css/global.css}" />
+	<title>1024forum-forget</title>
+
 </head>
 <body>
 	<div class="nk-container">
 		<!-- 头部 -->
-		<header class="bg-dark sticky-top">
+		<header class="bg-dark sticky-top" th:replace="index::header">
 			<div class="container">
 				<!-- 导航 -->
 				<nav class="navbar navbar-expand-lg navbar-dark">
@@ -62,41 +62,47 @@
 		<!-- 内容 -->
 		<div class="main">
 			<div class="container pl-5 pr-5 pt-3 pb-3 mt-3 mb-3">
-				<form class="mt-5">				
+				<form class="mt-5" method="post" th:action="@{/forget}" name="form">
 					<div class="form-group row">
-						<label for="your-email" class="col-sm-2 col-form-label text-right">邮箱:</label>
+						<label for="your-email" class="col-sm-2 col-form-label text-right">Email:</label>
 						<div class="col-sm-10">
-							<input type="email" class="form-control" id="your-email" placeholder="请输入您的邮箱!" required>
-							<div class="invalid-feedback">
+							<input type="email" th:class="|form-control ${emailMsg!=null?'is-invalid':''}|"
+								   name="email" th:value="${param.email}"
+								   id="your-email" placeholder="Please enter Email" required>
+							<div class="invalid-feedback" th:text="${emailMsg}">
 								该邮箱已被注册!
 							</div>
 						</div>
 					</div>
 					<div class="form-group row mt-4">
-						<label for="verifycode" class="col-sm-2 col-form-label text-right">验证码:</label>
+						<label for="verifycode" class="col-sm-2 col-form-label text-right">Verification Code:</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" id="verifycode" placeholder="请输入验证码!">
-							<div class="invalid-feedback">
+							<input type="text" th:class="|form-control ${codeMsg!=null?'is-invalid':''}|"
+								   name="verifycode"
+								   id="verifycode" placeholder="Please enter code">
+							<div class="invalid-feedback" th:text="${codeMsg}">
 								验证码不正确!
 							</div>
 						</div>
 						<div class="col-sm-4">
-							<a href="javascript:;" class="btn btn-info form-control">获取验证码</a>
+							<input onclick="get_code()" class="btn btn-info form-control" name="btn_code" id="bt" value="Send Code"></input>
 						</div>
-					</div>	
+					</div>
 					<div class="form-group row mt-4">
-						<label for="your-password" class="col-sm-2 col-form-label text-right">新密码:</label>
+						<label for="your-password" class="col-sm-2 col-form-label text-right">New Password:</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" id="your-password" placeholder="请输入新的密码!" required>
-							<div class="invalid-feedback">
+							<input type="password" th:class="|form-control ${passwordMsg!=null?'is-invalid':''}|"
+								   name="password" th:value="${param.password}"
+								   id="your-password" placeholder="Please enter new password" required>
+							<div class="invalid-feedback" th:text="${passwordMsg}">
 								密码长度不能小于8位!
-							</div>							
+							</div>
 						</div>
 					</div>							
 					<div class="form-group row mt-4">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-10 text-center">
-							<button type="submit" class="btn btn-info text-white form-control">重置密码</button>
+							<button type="submit" class="btn btn-info text-white form-control">Reset Password</button>
 						</div>
 					</div>
 				</form>				
@@ -104,7 +110,7 @@
 		</div>
 
 		<!-- 尾部 -->
-		<footer class="bg-dark">
+		<footer class="bg-dark" th:replace="index::footer">
 			<div class="container">
 				<div class="row">
 					<!-- 二维码 -->
@@ -169,6 +175,43 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-	<script src="../js/global.js"></script>
+	<script th:src="@{/js/global.js}"></script>
+	<script>
+
+		function get_code() {
+				var email = $("#your-email").val();	//获取input框内的值;
+				if (email == null || email == ""){
+					alert("Please enter email.");	//如果值为空，提示用户填写
+					return;
+				}else{
+					// 点击该button会发送请求给浏览器
+					window.location = "getCode?email=" + email;
+
+					$("#bt").addClass("on");
+					var time = 3;
+					$("#bt").attr("disabled", true);
+
+					var timer = setInterval(function() {
+						if (time == 0) {
+
+							clearInterval(timer);
+
+							 $("#bt").attr("disabled", false);
+
+							$("#bt").val("获取验证码");
+
+							$("#bt").removeClass("on");
+
+						} else {
+							$("#bt").val(time + " sec");
+						   time--;
+						}
+					}, 1000);
+				}
+
+		}
+
+	</script>
+
 </body>
 </html>

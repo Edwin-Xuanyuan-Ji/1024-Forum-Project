@@ -3,10 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
+	<link rel="icon" href="https://1024forum-avatar.s3.amazonaws.com/noun-lego-714043.png"/>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
 	<link rel="stylesheet" th:href="@{/css/global.css}" />
-	<title>牛客网-搜索结果</title>
+	<title>1024Forum-Search Result</title>
 </head>
 <body>
 	<div class="nk-container">
@@ -61,7 +61,7 @@
 		<!-- 内容 -->
 		<div class="main">
 			<div class="container">
-				<h6><b class="square"></b> 相关帖子</h6>
+				<h6><b class="square"></b> Relevant Posts</h6>
 				<!-- 帖子列表 -->
 				<ul class="list-unstyled mt-4">
 					<li class="media pb-3 pt-3 mb-3 border-bottom" th:each="map:${discussPosts}">
@@ -75,11 +75,11 @@
 							</div>
 							<div class="text-muted font-size-12">
 								<u class="mr-3" th:utext="${map.user.username}">寒江雪</u>
-								发布于 <b th:text="${#dates.format(map.post.createTime,'yyyy-MM-dd HH:mm:ss')}">2019-04-15 15:32:18</b>
+								posted on <b th:text="${#dates.format(map.post.createTime,'yyyy-MM-dd HH:mm:ss')}">2019-04-15 15:32:18</b>
 								<ul class="d-inline float-right">
-									<li class="d-inline ml-2">赞 <i th:text="${map.likeCount}">11</i></li>
+									<li class="d-inline ml-2">like <i th:text="${map.likeCount}">11</i></li>
 									<li class="d-inline ml-2">|</li>
-									<li class="d-inline ml-2">回复 <i th:text="${map.post.commentCount}">7</i></li>
+									<li class="d-inline ml-2">reply <i th:text="${map.post.commentCount}">7</i></li>
 								</ul>
 							</div>
 						</div>
@@ -103,7 +103,7 @@
 		</div>
 
 		<!-- 尾部 -->
-		<footer class="bg-dark">
+		<footer class="bg-dark" th:replace="index::footer">
 			<div class="container">
 				<div class="row">
 					<!-- 二维码 -->
