@@ -16,7 +16,7 @@
   
   Search, Authority, Monitor 
  
-### Core Technology
+### Core Technologies
 
   Spring Boot、SSM
    
