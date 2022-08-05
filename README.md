@@ -2,9 +2,19 @@
 
 **Table of Contents**
 
+-[Background](#Background)
+
 -[Project Summary](#Project-Summary)
 
 -[Architecture](#Architecture)
+
+## Background
+
+I develop this website project for two reasons:
+
+1. Practice my backend developing skills as well as learn more technologies.
+
+2. It's fun.
 
 ## Project Summary
 
