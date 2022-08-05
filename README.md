@@ -44,7 +44,7 @@ I develop this website project for two reasons:
   
   Search in posts function is implemented by using ElasticSearch and the key words are highlighted.
   
-  L2 cache is implemented by using Caffeine and Redis. Visit for hot posts is optimized. 
+  Two level cache is implemented by using Caffeine and Redis. Visit for hot posts is optimized. 
 
   Use Spring Security to realize authority management for multi-roles and URL-level authorization.
    
