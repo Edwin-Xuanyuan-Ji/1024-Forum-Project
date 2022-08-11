@@ -66,7 +66,7 @@ I develop this website project for two reasons:
 
 1024 Forum is deployed on a single AWS EC2 and the file server of it is S3 buckets. Since I don't have many servers I didn't set up a server cluster.
 
-But in my view, the ideal situation for a website like this should be deployed with clusters as the above pictures.
+But in my view, the ideal situation for a website that QPS > 1000 should be deployed with clusters as the above pictures.
 
 We can have at least two nginx and CDNs for good performance. Also, servers, redis, kafka and etc should be in clusters for advantages such as high performance and high usability. 
 
